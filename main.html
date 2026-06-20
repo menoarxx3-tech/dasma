@@ -1,0 +1,2100 @@
+<!DOCTYPE html>
+<html lang="sq">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Familja Qerkini - Dasma 2026</title>
+
+    <!-- ====== TAILWIND CSS ====== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ====== GOOGLE FONTS ====== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- ====== FONT AWESOME ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- ====== ANIMATE.CSS ====== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- ====== AOS (Scroll Animations) ====== -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        /* ============================================
+                   GLOBAL STYLES
+                   ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fdf2f8;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+                   FONT CLASSES
+                   ============================================ */
+        .font-wedding {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-quicksand {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        /* ============================================
+                   ENVELOPE / ZARF SECTION
+                   ============================================ */
+        #envelope-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 60%, #f9a8d4 100%);
+            overflow: hidden;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        #envelope-section.revealed {
+            min-height: 0vh;
+            padding: 0;
+            background: transparent;
+        }
+
+        #envelope-section.revealed .envelope-wrapper {
+            opacity: 0;
+            transform: scale(0.3);
+            pointer-events: none;
+            height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            transition: all 0.4s ease;
+        }
+
+        /* Envelope Wrapper */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            max-width: 380px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.03);
+        }
+
+        /* Envelope Container */
+        .envelope {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1.4 / 1;
+            background: linear-gradient(145deg, #fdf2f8, #fce7f3);
+            border-radius: 16px;
+            box-shadow: 0 20px 80px rgba(157, 23, 77, 0.15), 0 0 0 2px rgba(244, 114, 182, 0.1);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Envelope Flap */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            background: linear-gradient(180deg, #fce7f3, #fdf2f8);
+            border-bottom: 2px solid rgba(244, 114, 182, 0.15);
+            border-radius: 16px 16px 0 0;
+            transform-origin: bottom center;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 3;
+            box-shadow: 0 4px 20px rgba(157, 23, 77, 0.05);
+        }
+
+        .envelope-flap::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(180deg, transparent, rgba(244, 114, 182, 0.05));
+            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+        }
+
+        .envelope-flap .flap-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: #831843;
+            text-align: center;
+            line-height: 1.2;
+            opacity: 0.6;
+            letter-spacing: 2px;
+        }
+
+        .envelope-flap .flap-text small {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.6rem;
+            display: block;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #f472b6;
+            opacity: 0.5;
+            margin-top: 4px;
+        }
+
+        /* Envelope Body */
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            background: linear-gradient(0deg, #fdf2f8, #fce7f3);
+            border-radius: 0 0 16px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .envelope-body .heart-icon {
+            font-size: 3.5rem;
+            color: #ec4899;
+            opacity: 0.3;
+            animation: pulseHeart 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseHeart {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        /* Envelope Seal */
+        .envelope-seal {
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            font-size: 2.2rem;
+            color: #db2777;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(244, 114, 182, 0.2);
+            box-shadow: 0 4px 20px rgba(157, 23, 77, 0.08);
+            transition: all 0.3s ease;
+            animation: sealPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes sealPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(157, 23, 77, 0.08);
+            }
+
+            50% {
+                box-shadow: 0 4px 40px rgba(157, 23, 77, 0.2), 0 0 60px rgba(236, 72, 153, 0.05);
+            }
+        }
+
+        /* Envelope Open State - FAST! */
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .envelope.open .envelope-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 0.3s ease;
+        }
+
+        .envelope.open .envelope-body .heart-icon {
+            animation: heartFly 0.6s ease forwards;
+        }
+
+        @keyframes heartFly {
+            0% {
+                transform: scale(1) translateY(0);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: scale(1.8) translateY(-60px);
+                opacity: 0;
+            }
+        }
+
+        /* Envelope Click Hint */
+        .envelope-hint {
+            text-align: center;
+            margin-top: 16px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.8rem;
+            color: #f472b6;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: hintPulse 2s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .envelope-hint i {
+            margin-right: 8px;
+        }
+
+        @keyframes hintPulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        /* ============================================
+                   MAIN CONTENT (Hidden until envelope opens)
+                   ============================================ */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        #main-content.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ============================================
+                   HERO / INTRO SECTION
+                   ============================================ */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 60%, #f9a8d4 100%);
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+
+        #hero .hero-bg-flowers {
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.06;
+            pointer-events: none;
+            animation: floatBgFlowers 25s ease-in-out infinite;
+        }
+
+        #hero .hero-bg-flowers:nth-child(1) {
+            top: -5%;
+            left: -5%;
+            transform: rotate(-20deg);
+            animation-delay: 0s;
+        }
+
+        #hero .hero-bg-flowers:nth-child(2) {
+            bottom: -10%;
+            right: -5%;
+            transform: rotate(30deg);
+            animation-delay: 8s;
+        }
+
+        #hero .hero-bg-flowers:nth-child(3) {
+            top: 30%;
+            right: 10%;
+            font-size: 6rem;
+            opacity: 0.04;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBgFlowers {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(-20deg) scale(1);
+            }
+
+            25% {
+                transform: translate(30px, -20px) rotate(-15deg) scale(1.05);
+            }
+
+            50% {
+                transform: translate(-20px, 30px) rotate(-25deg) scale(0.95);
+            }
+
+            75% {
+                transform: translate(20px, 10px) rotate(-18deg) scale(1.02);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* ============================================
+                   FLOATING HEARTS ANIMATION
+                   ============================================ */
+        .floating-hearts {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #ec4899;
+            opacity: 0;
+            animation: floatHeartUp 8s ease-in-out infinite;
+        }
+
+        .floating-heart:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            font-size: 1.8rem;
+        }
+
+        .floating-heart:nth-child(2) {
+            left: 25%;
+            animation-delay: 1.5s;
+            font-size: 1.2rem;
+        }
+
+        .floating-heart:nth-child(3) {
+            left: 45%;
+            animation-delay: 3s;
+            font-size: 2.2rem;
+        }
+
+        .floating-heart:nth-child(4) {
+            left: 65%;
+            animation-delay: 0.8s;
+            font-size: 1.4rem;
+        }
+
+        .floating-heart:nth-child(5) {
+            left: 82%;
+            animation-delay: 2.2s;
+            font-size: 1.6rem;
+        }
+
+        .floating-heart:nth-child(6) {
+            left: 50%;
+            animation-delay: 4.5s;
+            font-size: 2.8rem;
+            opacity: 0.3;
+        }
+
+        @keyframes floatHeartUp {
+            0% {
+                transform: translateY(100vh) scale(0.3) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+                   HERO TEXT ANIMATIONS
+                   ============================================ */
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: #831843;
+            text-shadow: 0 4px 40px rgba(157, 23, 77, 0.12);
+            line-height: 1.1;
+            animation: titleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+
+            0%,
+            100% {
+                text-shadow: 0 4px 40px rgba(157, 23, 77, 0.12);
+            }
+
+            50% {
+                text-shadow: 0 4px 60px rgba(157, 23, 77, 0.25), 0 0 80px rgba(236, 72, 153, 0.1);
+            }
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #9d174d;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            font-weight: 300;
+            animation: subtitlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes subtitlePulse {
+
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        .hero-date {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #db2777;
+            margin-top: 12px;
+            animation: dateBounce 2.5s ease-in-out infinite;
+        }
+
+        @keyframes dateBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .hero-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        .hero-divider .line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #f472b6, transparent);
+        }
+
+        .hero-divider .icon {
+            color: #ec4899;
+            font-size: 1.4rem;
+            animation: pulseHeart 2s ease-in-out infinite;
+        }
+
+        .hero-scroll-btn {
+            margin-top: 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #9d174d;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(157, 23, 77, 0.15);
+            padding: 12px 28px;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            animation: btnPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(157, 23, 77, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 30px 8px rgba(157, 23, 77, 0.05);
+            }
+        }
+
+        .hero-scroll-btn:hover {
+            background: rgba(157, 23, 77, 0.08);
+            border-color: rgba(157, 23, 77, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(157, 23, 77, 0.12);
+        }
+
+        .hero-scroll-btn i {
+            animation: bounceDown 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* ============================================
+                   SECTION COMMON
+                   ============================================ */
+        .section-padding {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #831843;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #9d174d;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px auto 32px;
+            max-width: 200px;
+        }
+
+        .section-divider .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #f9a8d4, transparent);
+        }
+
+        .section-divider .icon {
+            color: #f472b6;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            animation: spinFlower 8s linear infinite;
+        }
+
+        @keyframes spinFlower {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================
+                   COUPLE SECTION
+                   ============================================ */
+        #couple {
+            background: linear-gradient(180deg, #fdf2f8 0%, #ffffff 50%, #fdf2f8 100%);
+        }
+
+        .couple-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(244, 114, 182, 0.2);
+            box-shadow: 0 8px 40px rgba(219, 39, 119, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .couple-photo:hover {
+            transform: scale(1.06) rotate(-3deg);
+            border-color: #f472b6;
+            box-shadow: 0 12px 60px rgba(219, 39, 119, 0.18);
+        }
+
+        .couple-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #831843;
+        }
+
+        .couple-role {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.75rem;
+            color: #f472b6;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================
+                   DETAILS CARDS
+                   ============================================ */
+        .detail-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(244, 114, 182, 0.12);
+            border-radius: 24px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            height: 100%;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(244, 114, 182, 0.3);
+            box-shadow: 0 20px 70px rgba(219, 39, 119, 0.1);
+        }
+
+        .detail-card .icon {
+            font-size: 2.8rem;
+            color: #ec4899;
+            margin-bottom: 12px;
+            display: block;
+            animation: iconBounce 3s ease-in-out infinite;
+        }
+
+        .detail-card:nth-child(1) .icon {
+            animation-delay: 0s;
+        }
+
+        .detail-card:nth-child(2) .icon {
+            animation-delay: 0.5s;
+        }
+
+        .detail-card:nth-child(3) .icon {
+            animation-delay: 1s;
+        }
+
+        .detail-card:nth-child(4) .icon {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes iconBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-8px) scale(1.1);
+            }
+        }
+
+        .detail-card .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #831843;
+        }
+
+        .detail-card .desc {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            color: #4a1942;
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        .detail-card .desc strong {
+            color: #db2777;
+        }
+
+        /* ============================================
+                   UNIQUE WEDDING FEATURES
+                   ============================================ */
+        .unique-feature {
+            background: linear-gradient(135deg, rgba(252, 231, 243, 0.6), rgba(251, 207, 232, 0.3));
+            border: 2px solid rgba(244, 114, 182, 0.15);
+            border-radius: 30px;
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unique-feature::before {
+            content: '✦';
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-size: 8rem;
+            color: rgba(244, 114, 182, 0.05);
+            transform: rotate(20deg);
+        }
+
+        .unique-feature::after {
+            content: '✦';
+            position: absolute;
+            bottom: -30px;
+            left: -10px;
+            font-size: 10rem;
+            color: rgba(244, 114, 182, 0.04);
+            transform: rotate(-15deg);
+        }
+
+        .unique-feature:hover {
+            border-color: rgba(244, 114, 182, 0.4);
+            transform: scale(1.01);
+            box-shadow: 0 20px 70px rgba(219, 39, 119, 0.06);
+        }
+
+        .unique-feature .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+            display: block;
+            animation: floatFeature 4s ease-in-out infinite;
+        }
+
+        @keyframes floatFeature {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        .unique-feature .feature-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #831843;
+        }
+
+        .unique-feature .feature-desc {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            color: #4a1942;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        .unique-feature .feature-desc strong {
+            color: #db2777;
+        }
+
+        /* ============================================
+                   LOVE TIMELINE
+                   ============================================ */
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(244, 114, 182, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(8px);
+            border-color: rgba(244, 114, 182, 0.2);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            flex-shrink: 0;
+            animation: dotPulse 2.5s ease-in-out infinite;
+        }
+
+        .timeline-dot:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .timeline-dot:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .timeline-dot:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.3);
+            }
+
+            50% {
+                transform: scale(1.3);
+                box-shadow: 0 0 20px 8px rgba(236, 72, 153, 0.1);
+            }
+        }
+
+        .timeline-content .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #831843;
+        }
+
+        .timeline-content .timeline-desc {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            color: #4a1942;
+            opacity: 0.7;
+        }
+
+        /* ============================================
+                   MAP SECTION
+                   ============================================ */
+        #map-section {
+            background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 100%);
+        }
+
+        .map-container {
+            border-radius: 30px;
+            overflow: hidden;
+            border: 2px solid rgba(244, 114, 182, 0.15);
+            box-shadow: 0 12px 50px rgba(219, 39, 119, 0.06);
+            transition: all 0.4s ease;
+        }
+
+        .map-container:hover {
+            border-color: rgba(244, 114, 182, 0.3);
+            box-shadow: 0 20px 80px rgba(219, 39, 119, 0.12);
+            transform: scale(1.01);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            display: block;
+            filter: saturate(0.9) contrast(1.05);
+        }
+
+        .location-details {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 20px 24px;
+            border: 1px solid rgba(244, 114, 182, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .location-details:hover {
+            border-color: rgba(244, 114, 182, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(219, 39, 119, 0.06);
+        }
+
+        .location-details .loc-icon {
+            color: #ec4899;
+            font-size: 1.8rem;
+            margin-right: 12px;
+        }
+
+        /* ============================================
+                   RSVP SECTION
+                   ============================================ */
+        #rsvp-section {
+            background: linear-gradient(180deg, #fce7f3 0%, #fdf2f8 100%);
+        }
+
+        .rsvp-big-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 114, 182, 0.15);
+            border-radius: 32px;
+            padding: 40px 32px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        .rsvp-big-box:hover {
+            border-color: rgba(236, 72, 153, 0.3);
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 20px 80px rgba(219, 39, 119, 0.08);
+        }
+
+        .rsvp-big-box .phone-big {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #9d174d;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-big-box:hover .phone-big {
+            color: #db2777;
+            transform: scale(1.02);
+        }
+
+        .rsvp-big-box .phone-big i {
+            color: #ec4899;
+            margin-right: 12px;
+            font-size: 2rem;
+            animation: ringPhone 2s ease-in-out infinite;
+        }
+
+        @keyframes ringPhone {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            10% {
+                transform: rotate(15deg);
+            }
+
+            20% {
+                transform: rotate(-15deg);
+            }
+
+            30% {
+                transform: rotate(10deg);
+            }
+
+            40% {
+                transform: rotate(-10deg);
+            }
+
+            50% {
+                transform: rotate(5deg);
+            }
+
+            60%,
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .rsvp-big-box .label-big {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #f472b6;
+            font-weight: 600;
+        }
+
+        .rsvp-big-box .hint-big {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.75rem;
+            color: #f472b6;
+            margin-top: 6px;
+            opacity: 0.6;
+            animation: hintPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes hintPulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        /* ============================================
+                   FOOTER
+                   ============================================ */
+        #footer {
+            background: linear-gradient(135deg, #831843, #9d174d);
+            padding: 40px 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #footer .heart {
+            color: #f9a8d4;
+            display: inline-block;
+            animation: pulseHeart 2s ease-in-out infinite;
+        }
+
+        #footer .footer-flowers {
+            font-size: 1.6rem;
+            letter-spacing: 8px;
+            opacity: 0.3;
+            animation: flowerSlide 10s ease-in-out infinite;
+        }
+
+        @keyframes flowerSlide {
+
+            0%,
+            100% {
+                letter-spacing: 8px;
+                opacity: 0.3;
+            }
+
+            50% {
+                letter-spacing: 16px;
+                opacity: 0.5;
+            }
+        }
+
+        /* ============================================
+                   TOAST
+                   ============================================ */
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(157, 23, 77, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 15px 50px rgba(157, 23, 77, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ============================================
+                   FLOATING DECORATIVE ELEMENTS
+                   ============================================ */
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 2.5rem;
+            opacity: 0.04;
+            animation: floatAround 25s ease-in-out infinite;
+        }
+
+        @keyframes floatAround {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+
+            25% {
+                transform: translate(40px, -30px) rotate(8deg) scale(1.1);
+            }
+
+            50% {
+                transform: translate(-30px, 40px) rotate(-5deg) scale(0.9);
+            }
+
+            75% {
+                transform: translate(20px, 20px) rotate(3deg) scale(1.05);
+            }
+        }
+
+        /* ============================================
+                   CONFETTI RAIN ANIMATION
+                   ============================================ */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confettiFall linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+                transform: translateY(0vh) rotate(180deg) scale(1);
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+                   COUNTDOWN TIMER
+                   ============================================ */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 12px 20px;
+            min-width: 70px;
+            text-align: center;
+            border: 1px solid rgba(244, 114, 182, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: scale(1.05);
+            border-color: rgba(244, 114, 182, 0.3);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .countdown-item .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #831843;
+            display: block;
+            line-height: 1;
+        }
+
+        .countdown-item .label {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f472b6;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                   ============================================ */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+                letter-spacing: 5px;
+            }
+
+            .hero-date {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2.6rem;
+            }
+
+            .section-padding {
+                padding: 60px 16px;
+            }
+
+            .couple-photo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .detail-card {
+                padding: 24px 18px;
+            }
+
+            .rsvp-big-box .phone-big {
+                font-size: 1.8rem;
+            }
+
+            .map-container iframe {
+                height: 280px;
+            }
+
+            .floating-heart {
+                font-size: 0.8rem !important;
+            }
+
+            .countdown-item {
+                padding: 10px 16px;
+                min-width: 60px;
+            }
+
+            .countdown-item .number {
+                font-size: 1.8rem;
+            }
+
+            .unique-feature {
+                padding: 30px 20px;
+            }
+
+            .unique-feature .feature-title {
+                font-size: 1.8rem;
+            }
+
+            .envelope-wrapper {
+                max-width: 280px;
+            }
+
+            .envelope-flap .flap-text {
+                font-size: 1.2rem;
+            }
+
+            .envelope-seal {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+
+            .hero-date {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .couple-photo {
+                width: 110px;
+                height: 110px;
+            }
+
+            .couple-name {
+                font-size: 1.6rem;
+            }
+
+            .detail-card .icon {
+                font-size: 2rem;
+            }
+
+            .rsvp-big-box .phone-big {
+                font-size: 1.4rem;
+            }
+
+            .rsvp-big-box {
+                padding: 28px 18px;
+            }
+
+            .map-container iframe {
+                height: 200px;
+            }
+
+            .hero-scroll-btn {
+                padding: 10px 20px;
+                font-size: 0.75rem;
+            }
+
+            .floating-heart {
+                font-size: 0.6rem !important;
+            }
+
+            .countdown-item {
+                padding: 8px 12px;
+                min-width: 50px;
+            }
+
+            .countdown-item .number {
+                font-size: 1.4rem;
+            }
+
+            .countdown-item .label {
+                font-size: 0.5rem;
+            }
+
+            .unique-feature {
+                padding: 24px 16px;
+            }
+
+            .unique-feature .feature-title {
+                font-size: 1.5rem;
+            }
+
+            .unique-feature .feature-desc {
+                font-size: 0.85rem;
+            }
+
+            .envelope-wrapper {
+                max-width: 220px;
+            }
+
+            .envelope-flap .flap-text {
+                font-size: 1rem;
+            }
+
+            .envelope-flap .flap-text small {
+                font-size: 0.5rem;
+            }
+
+            .envelope-seal {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
+
+            .envelope-body .heart-icon {
+                font-size: 2.5rem;
+            }
+
+            .envelope-hint {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* ============================================
+                   SCROLLBAR
+                   ============================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fdf2f8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #f9a8d4, #ec4899);
+            border-radius: 20px;
+        }
+
+        ::selection {
+            background: #f472b6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================
+    CONFETTI (Fun Animation!)
+    ========================================== -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- ==========================================
+    FLOATING DECORATIVE ELEMENTS
+    ========================================== -->
+    <div class="floating-element" style="top:10%;left:5%;font-size:4rem;">🌸</div>
+    <div class="floating-element" style="top:20%;right:8%;font-size:3rem;animation-delay:6s;">🌷</div>
+    <div class="floating-element" style="bottom:30%;left:3%;font-size:3.5rem;animation-delay:12s;">🌺</div>
+    <div class="floating-element" style="bottom:15%;right:5%;font-size:4.5rem;animation-delay:18s;">💐</div>
+
+    <!-- ==========================================
+    ENVELOPE / ZARF SECTION
+    ========================================== -->
+    <section id="envelope-section">
+        <div class="envelope-wrapper" onclick="openEnvelope()">
+            <div class="envelope" id="envelope">
+                <!-- Flap -->
+                <div class="envelope-flap">
+                    <div class="flap-text">
+                        ✦ Ftesë ✦
+                        <small>Hap ftesen</small>
+                    </div>
+                </div>
+                <!-- Body -->
+                <div class="envelope-body">
+                    <span class="heart-icon">❤</span>
+                </div>
+                <!-- Seal -->
+                <div class="envelope-seal">
+                    💌
+                </div>
+            </div>
+            <div class="envelope-hint">
+                <i class="fas fa-hand-pointer"></i> Kliko për të hapur ftesën
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    MAIN CONTENT (Hidden until envelope opens)
+    ========================================== -->
+    <div id="main-content">
+
+        <!-- ==========================================
+        HERO / INTRO SECTION
+        ========================================== -->
+        <section id="hero">
+            <span class="hero-bg-flowers">🌸</span>
+            <span class="hero-bg-flowers">🌺</span>
+            <span class="hero-bg-flowers">🌷</span>
+
+            <!-- Floating Hearts -->
+            <div class="floating-hearts">
+                <span class="floating-heart">❤</span>
+                <span class="floating-heart">❤</span>
+                <span class="floating-heart">❤</span>
+                <span class="floating-heart">❤</span>
+                <span class="floating-heart">❤</span>
+                <span class="floating-heart">❤</span>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-title">Familja Qerkini</div>
+                <div class="hero-subtitle">ju ftojmë në dasmën tonë</div>
+
+                <div class="hero-divider">
+                    <span class="line"></span>
+                    <span class="icon">❤</span>
+                    <span class="line"></span>
+                </div>
+
+                <div class="hero-date">✦ 26 Korrik 2026 ✦</div>
+                <div
+                    style="font-family:'Quicksand',sans-serif;color:#9d174d;opacity:0.5;font-size:0.95rem;letter-spacing:4px;margin-top:4px;">
+                    ⏰ ora 19:00 – 19:30
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-container" id="countdown">
+                    <div class="countdown-item">
+                        <span class="number" id="days">00</span>
+                        <span class="label">Ditë</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number" id="hours">00</span>
+                        <span class="label">Orë</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number" id="minutes">00</span>
+                        <span class="label">Minuta</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="number" id="seconds">00</span>
+                        <span class="label">Sekonda</span>
+                    </div>
+                </div>
+
+                <a href="#couple" class="hero-scroll-btn">
+                    <i class="fas fa-chevron-down"></i>
+                    Zbulo më shumë
+                </a>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        COUPLE SECTION
+        ========================================== -->
+        <section id="couple" class="section-padding">
+            <div class="max-w-6xl mx-auto">
+                <div>
+                    <div class="section-title">Historia Jonë</div>
+                    <div class="section-subtitle">Fillimi i përjetësisë</div>
+                    <div class="section-divider">
+                        <span class="line"></span>
+                        <span class="icon">✿</span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 mt-8">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80"
+                            alt="Familja Qerkini" class="couple-photo" />
+                        <div class="text-center mt-4">
+                            <div class="couple-name">Familja Qerkini</div>
+                            <div class="couple-role">❤ Ju pret me dashuri ❤</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center max-w-sm">
+                        <div class="font-serif text-2xl text-pink-300" style="font-size:3rem;line-height:1;">&amp;</div>
+                        <p class="text-gray-600 font-quicksand text-sm leading-relaxed mt-4 px-4 md:px-0">
+                            <span class="text-pink-400 text-2xl">"</span>
+                            Dashuria nuk matet me ditë, muaj apo vite.
+                            Ajo matet me çdo moment që jetojmë së bashku,
+                            me çdo buzëqeshje dhe me çdo rrahje zemre.
+                            <span class="text-pink-400 text-2xl">"</span>
+                        </p>
+                        <div
+                            style="margin-top:12px;font-family:'Dancing Script',cursive;color:#f472b6;font-size:1.2rem;">
+                            ✦ Me dashuri për gjithë jetën ✦
+                        </div>
+                    </div>
+
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80"
+                            alt="Dasma Qerkini" class="couple-photo" />
+                        <div class="text-center mt-4">
+                            <div class="couple-name">26.07.2026</div>
+                            <div class="couple-role">✦ Dita e dashurisë ✦</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        DETAILS SECTION (with Unique Features)
+        ========================================== -->
+        <section id="details" class="section-padding"
+            style="background:linear-gradient(180deg,#ffffff 0%,#fdf2f8 100%);">
+            <div class="max-w-5xl mx-auto">
+                <div>
+                    <div class="section-title">Detajet e Dasmës</div>
+                    <div class="section-subtitle">Gjithçka që duhet të dini</div>
+                    <div class="section-divider">
+                        <span class="line"></span>
+                        <span class="icon">❀</span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+                    <div>
+                        <div class="detail-card">
+                            <span class="icon">📅</span>
+                            <div class="title">Data</div>
+                            <div class="desc">E Diel<br /><strong>26 Korrik 2026</strong></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-card">
+                            <span class="icon">⏰</span>
+                            <div class="title">Ora</div>
+                            <div class="desc"><strong>19:00 – 19:30</strong><br />(Ardhja në kohë)</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-card">
+                            <span class="icon">📍</span>
+                            <div class="title">Lokacioni</div>
+                            <div class="desc"><strong>Ferizaj</strong><br />Rruga për Jezerc, km3</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-card">
+                            <span class="icon">💍</span>
+                            <div class="title">Kodi i Veshjes</div>
+                            <div class="desc"><strong>Elegancë</strong><br />Veshje festive dhe të bukura</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== UNIQUE FEATURES ===== -->
+                <div class="mt-12">
+                    <div>
+                        <div class="unique-feature">
+                            <span class="feature-icon">🌟</span>
+                            <div class="feature-title">Dasma Jonë Unike</div>
+                            <div class="feature-desc">
+                                Në këtë ditë të veçantë, ne kemi përgatitur <strong>surpriza të papritura</strong>,
+                                një <strong>orchestrë live</strong> me muzikë romantike,
+                                <strong>fotografi profesionale</strong> për të kapur çdo moment,
+                                dhe një <strong>meny të veçantë</strong> të përgatitur me dashuri.
+                                <br /><br />
+                                <span style="font-family:'Dancing Script',cursive;font-size:1.2rem;color:#db2777;">
+                                    ✦ Çdo detaj është menduar për ju ✦
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== LOVE TIMELINE ===== -->
+                <div class="mt-12">
+                    <div
+                        style="background:rgba(255,255,255,0.5);backdrop-filter:blur(12px);border-radius:30px;padding:32px 28px;border:1px solid rgba(244,114,182,0.1);">
+                        <h3
+                            style="font-family:'Great Vibes',cursive;font-size:2rem;color:#831843;text-align:center;margin-bottom:16px;">
+                            ✦ Rrugëtimi Ynë ✦
+                        </h3>
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <div class="timeline-title">❤ Takimi i Parë</div>
+                                <div class="timeline-desc">Kur zemrat tona filluan të rrahin një ritëm</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <div class="timeline-title">💍 Fejesa</div>
+                                <div class="timeline-desc">Kur thamë "Po" për një jetë së bashku</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <div class="timeline-title">🏠 Fillimi i Përbashkët</div>
+                                <div class="timeline-desc">Kur ndërtuam shtëpinë e ëndrrave tona</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <div class="timeline-title">💒 Dasma</div>
+                                <div class="timeline-desc">Dita kur dy zemrat bëhen një</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        MAP SECTION (Updated Location)
+        ========================================== -->
+        <section id="map-section" class="section-padding">
+            <div class="max-w-4xl mx-auto">
+                <div>
+                    <div class="section-title">Gjeni Lokacionin</div>
+                    <div class="section-subtitle">Vendndodhja &amp; Udhëzimet</div>
+                    <div class="section-divider">
+                        <span class="line"></span>
+                        <span class="icon">✦</span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+
+                <!-- Location Details -->
+                <div>
+                    <div
+                        class="location-details text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center">
+                            <span class="loc-icon">📍</span>
+                            <div>
+                                <div
+                                    style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#831843;">
+                                    Ferizaj, Rruga për Jezerc, km3
+                                </div>
+                                <div
+                                    style="font-family:'Quicksand',sans-serif;font-size:0.85rem;color:#4a1942;opacity:0.7;">
+                                    <i class="fas fa-info-circle text-pink-300"></i>
+                                    Për çdo informacion shtesë, na kontaktoni
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            style="font-family:'Quicksand',sans-serif;font-size:0.8rem;color:#f472b6;background:rgba(244,114,182,0.08);padding:8px 20px;border-radius:30px;white-space:nowrap;">
+                            <i class="fas fa-car"></i> Parkim i sigurt
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="map-container mt-4">
+                    <!-- Google Maps Embed - Ferizaj, Kosovo -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.123456789!2d21.160000!3d42.370000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549e123456789%3A0x123456789abcdef!2sFerizaj%2C%20Kosovo!5e0!3m2!1sen!2s!4v1700000000000"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Vendndodhja e Dasmës - Ferizaj"></iframe>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="font-quicksand text-sm text-gray-500">
+                        <i class="fas fa-map-pin text-pink-400"></i>
+                        <strong>Ferizaj</strong>, Rruga për Jezerc, km3
+                    </p>
+                    <p class="font-quicksand text-xs text-gray-400 mt-1">
+                        <i class="fas fa-info-circle text-pink-300"></i>
+                        Përdorni GPS-in për udhëzime të sakta
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        RSVP SECTION
+        ========================================== -->
+        <section id="rsvp-section" class="section-padding">
+            <div class="max-w-4xl mx-auto">
+                <div>
+                    <div class="section-title">Konfirmoni Pjesëmarrjen</div>
+                    <div class="section-subtitle">Ju presim me dashuri</div>
+                    <div class="section-divider">
+                        <span class="line"></span>
+                        <span class="icon">❤</span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="rsvp-big-box" id="rsvpBox" title="Kliko për të kopjuar numrin">
+                        <div class="label-big">
+                            <i class="fas fa-phone-alt"></i> Telefon ose WhatsApp
+                        </div>
+                        <div class="phone-big" id="phoneNumber">
+                            <i class="fas fa-phone"></i> +383 45 236 776
+                        </div>
+                        <div class="hint-big">
+                            <i class="fas fa-hand-pointer"></i> Kliko për të kopjuar numrin
+                        </div>
+                        <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(244,114,182,0.1);">
+                            <p class="font-quicksand text-xs text-gray-500">
+                                <i class="fas fa-heart text-pink-300"></i>
+                                Ju lutemi konfirmoni deri më <strong>12 Korrik 2026</strong>
+                            </p>
+                            <p class="font-quicksand text-xs text-pink-300 mt-2">
+                                <i class="fas fa-smile"></i>
+                                Mezi ju presim!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        FOOTER
+        ========================================== -->
+        <footer id="footer">
+            <div class="footer-flowers">🌸 🌺 🌷 🌹 💐</div>
+            <div style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:white;margin:12px 0 8px;">
+                Familja Qerkini <span class="heart">❤</span>
+            </div>
+            <div
+                style="font-family:'Quicksand',sans-serif;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;opacity:0.5;">
+                26 Korrik 2026 ✦ Përjetësisht së bashku
+            </div>
+            <div
+                style="margin-top:16px;font-family:'Quicksand',sans-serif;font-size:0.6rem;opacity:0.3;letter-spacing:2px;">
+                ✦ Dizajnuar me dashuri ✦
+            </div>
+        </footer>
+    </div>
+    <!-- /main-content -->
+
+    <!-- ===== TOAST ===== -->
+    <div class="copy-toast" id="toast">
+        <i class="fas fa-check-circle" style="margin-right:10px;color:#f9a8d4;"></i>
+        Numri u kopjua në clipboard!
+    </div>
+
+    <!-- ==========================================
+    SCRIPTS
+    ========================================== -->
+    <!-- AOS (Scroll Animations) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ========================================
+        // ENVELOPE / ZARF FUNCTION - FAST!
+        // ========================================
+        let isEnvelopeOpen = false;
+
+        // ========================================
+        // ENVELOPE / ZARF FUNCTION
+        // ========================================
+        function openEnvelope() {
+            if (isEnvelopeOpen) return;
+            isEnvelopeOpen = true;
+
+            const envelope = document.getElementById('envelope');
+            const section = document.getElementById('envelope-section');
+            const mainContent = document.getElementById('main-content');
+
+            // Open envelope immediately
+            envelope.classList.add('open');
+
+            // Show main content instantly
+            section.classList.add('revealed');
+            mainContent.classList.add('visible');
+
+            // Trigger celebration
+            triggerCelebration();
+
+            // Initialize AOS immediately
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 80
+            });
+
+            // Start countdown
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // ⚠️ FSHIJE OSE KOMENTO KËTË BLOKUN ⚠️
+            // ==========================================
+            // Scroll to main content after a tiny delay
+            // setTimeout(() => {
+            //     mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // }, 300);
+            // ==========================================
+        }
+
+        // ========================================
+        // CELEBRATION CONFETTI
+        // ========================================
+        function triggerCelebration() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ec4899', '#f472b6', '#f9a8d4', '#db2777', '#831843', '#fbcfe8', '#fdf2f8', '#FFD700', '#FF6B6B',
+                '#4ECDC4'
+            ];
+
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    const size = Math.random() * 10 + 4;
+                    const isCircle = Math.random() > 0.5;
+                    confetti.style.width = isCircle ? size + 'px' : size * 0.5 + 'px';
+                    confetti.style.height = isCircle ? size + 'px' : size * 2 + 'px';
+                    confetti.style.borderRadius = isCircle ? '50%' : '2px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    confetti.style.animationDelay = '0s';
+                    container.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 50);
+            }
+        }
+
+        // ========================================
+        // COUNTDOWN TIMER
+        // ========================================
+        function updateCountdown() {
+            const weddingDate = new Date('July 26, 2026 19:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // ========================================
+        // COPY PHONE NUMBER
+        // ========================================
+        document.addEventListener('DOMContentLoaded', function () {
+            const rsvpBox = document.getElementById('rsvpBox');
+            const phoneElement = document.getElementById('phoneNumber');
+            const toast = document.getElementById('toast');
+
+            if (rsvpBox && phoneElement) {
+                rsvpBox.addEventListener('click', function (e) {
+                    const phoneNumber = phoneElement.textContent.replace(/[^0-9+]/g, '');
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(phoneNumber).then(() => {
+                            showToast();
+                        }).catch(() => {
+                            fallbackCopy(phoneNumber);
+                        });
+                    } else {
+                        fallbackCopy(phoneNumber);
+                    }
+                });
+            }
+
+            function fallbackCopy(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast();
+                } catch (err) { }
+                document.body.removeChild(textarea);
+            }
+
+            let toastTimeout = null;
+
+            function showToast() {
+                if (!toast) return;
+                if (toastTimeout) {
+                    clearTimeout(toastTimeout);
+                    toastTimeout = null;
+                }
+                toast.classList.remove('show');
+                void toast.offsetWidth;
+                toast.classList.add('show');
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                    toastTimeout = null;
+                }, 2500);
+            }
+
+            // ========================================
+            // KEYBOARD ACCESSIBILITY
+            // ========================================
+            if (rsvpBox) {
+                rsvpBox.setAttribute('role', 'button');
+                rsvpBox.setAttribute('tabindex', '0');
+                rsvpBox.setAttribute('aria-label', 'Kopjo numrin e telefonit');
+                rsvpBox.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+
+            // ========================================
+            // SMOOTH SCROLL
+            // ========================================
+            const scrollBtn = document.querySelector('.hero-scroll-btn');
+            if (scrollBtn) {
+                scrollBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+
+            // ========================================
+            // CONSOLE GREETING
+            // ========================================
+            console.log('%c🌸 ✦ FAMILJA QERKINI - DASMA 2026 ✦ 🌸', 'font-size:22px; font-weight:bold; color:#db2777;');
+            console.log('%c📞 +383 45 236 776', 'font-size:15px; color:#9d174d;');
+            console.log('%c🗓️ 26 Korrik 2026 | ora 19:00 - 19:30', 'font-size:14px; color:#f472b6;');
+            console.log('%c📍 Ferizaj, Rruga për Jezerc, km3', 'font-size:13px; color:#f9a8d4;');
+            console.log('💗 Ju urojmë mirëseardhje në dasmën tonë!');
+        });
+    </script>
+
+</body>
+
+</html>
